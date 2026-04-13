@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link rel='stylesheet' type="text/css" href="{{url_for('static',filename='style.css')}}">
+</head>
+
+<body style="background: rgb(252,250,250);">
+    <div class="container">
+        <h2 class="full-width">Car Price Prediction</h2>
+        <form action="{{url_for('predict')}}" method="post">
+
+            <div>
+                <label>Present Price </label>
+                <input type="number" name="Present_Price" step="0.01" min="0.1" value="{{ result.Present_Price }}">
+            </div>
+
+            <div>
+                <label>Driven Kms</label>
+                <input type="number" name="Driven_kms" min="0" value="{{ result.Driven_kms }}">
+            </div>
+
+            <div>
+                <label>Owner</label>
+                <input type="number" min="0" max="3" name="Owner" value="{{ result.Owner }}" required>
+            </div>
+
+            <div>
+                <label>Car Age</label>
+                <input type="number" name="age" min="0" max="30" value="{{ result.age }}">
+            </div>
+
+            <div>
+                <label>Fuel Type</label>
+                <select name="Fuel_Type">
+                    <option value="Petrol" {{ 'selected' if result.Fuel_Type=='Petrol' }}>Petrol</option>
+                    <option value="Diesel" {{ 'selected' if result.Fuel_Type=='Diesel' }}>Diesel</option>
+                </select>
+            </div>
+
+
+
+            <div>
+                <label>Seller Type</label>
+                <select name="Seller_Type">
+                    <option value="Dealer">Dealer</option>
+                    <option value="Individual">Individual</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Transmission</label>
+                <select name="Transmission">
+                    <option value="Manual">Manual</option>
+                    <option value="Automatic">Automatic</option>
+                </select>
+            </div>
+
+            <button type="submit">Predict Selling Price</button>
+        </form>
+
+        <h3 class="full-width">{{prediction_text}}</h3>
+    </div>
+</body>
+
+</html>
